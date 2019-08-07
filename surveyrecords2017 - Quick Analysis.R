@@ -1,0 +1,36 @@
+library(ggplot2)
+library(psych)
+
+survey2017 <- read.csv(file.choose())
+survey2017
+names(survey2017)
+
+describe(survey2017)
+
+plot(survey2017$Region,survey2017$Order.Priority)
+plot(survey2017$Region,survey2017$Sales.Channel)
+plot(survey2017$Country)
+plot(survey2017$Item.Type)
+plot(survey2017$Sales.Channel)
+plot(survey2017$Order.Priority)
+hist(survey2017$Units.Sold)
+hist(survey2017$Unit.Price)
+hist(survey2017$Unit.Cost)
+hist(survey2017$Total.Revenue)
+hist(survey2017$Total.Cost)
+hist(survey2017$Total.Profit)
+
+
+ggplot(survey2017, aes(x=Unit.Cost, y=Units.Sold, color=Region)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x=Unit.Price, y=Units.Sold, color=Region)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x=Units.Sold,)) + geom_histogram(binwidth=200) + facet_wrap(~ Region, scale="free_y")
+ggplot(survey2017, aes(x=Units.Sold, fill=Item.Type)) + geom_histogram()
+ggplot(survey2017, aes(x=Total.Revenue, fill=Region)) + geom_histogram()
+ggplot(survey2017, aes(x=Total.Cost, y=Total.Revenue, color=Region)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x=Units.Sold, y=Unit.Price, color=Sales.Channel)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x =Sales.Channel, y =Units.Sold, fill =Sales.Channel)) + geom_boxplot() + facet_wrap(~ Item.Type, ncol = 2)
+ggplot(survey2017, aes(x =, y =Units.Sold, fill =Sales.Channel)) + geom_boxplot() + facet_wrap(~ Item.Type, ncol = 2)
+ggplot(survey2017, aes(x=Unit.Price, y=Units.Sold, color=Total.Revenue)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x=Unit.Price, y=Units.Sold, color=Total.Revenue)) + geom_smooth(se=FALSE) + ylim(0,10000)
+ggplot(survey2017, aes(x=Units.Sold, y=Unit.Price, color=Order.Priority)) + geom_smooth(se=FALSE)
+ggplot(survey2017, aes(x=Units.Sold, y=Unit.Price, color=Order.Priority)) + geom_smooth(se=FALSE) + ylim(0,600)
